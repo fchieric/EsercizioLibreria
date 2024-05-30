@@ -5,7 +5,7 @@ public class Libri {
     public String titolo;
     public String autore;
     public int idGenere;
-    public Integer idGenere2;
+    public int idGenere2;
     public int idCasaEd;
     public int anno;
     public int quantita;
