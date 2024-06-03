@@ -13,16 +13,14 @@ public class Libri {
 
     @Override
     public String toString() {
-        return "Libri{" +
-                "id=" + id +
-                ", titolo='" + titolo + '\'' +
-                ", autore='" + autore + '\'' +
-                ", idGenere=" + idGenere +
-                ", idGenere2=" + idGenere2 +
-                ", idCasaEd=" + idCasaEd +
-                ", data=" + anno +
-                ", quantita=" + quantita +
-                ", codiceIsbn=" + codiceIsbn +
-                '}';
+        return "Libro ID: " + id +
+                "\nTitolo: " + titolo +
+                "\nAutore: " + autore +
+                "\nID Genere: " + idGenere +
+                "\nID Genere 2: " + (idGenere2 == 0 ? "N/A" : idGenere2) +
+                "\nID Casa Editrice: " + idCasaEd +
+                "\nAnno di Pubblicazione: " + anno +
+                "\nQuantità: " + quantita +
+                "\nCodice ISBN: " + codiceIsbn;
     }
 }
