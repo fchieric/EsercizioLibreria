@@ -1,4 +1,5 @@
 import model.Libri;
+import model.Utente;
 
 import javax.xml.stream.events.Comment;
 import java.sql.*;
@@ -42,6 +43,48 @@ public class Main {
 
             // menu per scelta utente
             // DA MODIFICARE INSERENDO TRY CATCH PER EVITARE CHE SI ROMPA
+            System.out.println("*** SELEZIONA UNA VOCE DAL MENÙ PRINCIPALE ***\n");
+            while (!exit) {
+                System.out.println("1 per il menù libri");
+                System.out.println("2 per il menù utenti");
+                System.out.println("3 per il menù magazzino");
+                System.out.println("4 per fare una ricerca");
+                System.out.println("5 per reportistica prestiti");
+                System.out.println("6 per uscire");
+
+                System.out.print("Inserisci il numero della tua selezione: ");
+                scelta = sc.nextInt();
+                sc.nextLine();
+
+                if (scelta == 1) {
+                    menuLibri(sc);
+                } else if (scelta == 2) {
+                    menuUtenti(sc);
+                } /* else if (scelta == 3) {
+                    menuMagazz(sc);
+                } else if (scelta == 4) {
+                    menuRicerca(sc);
+                } else if (scelta == 5) {
+                    menuReportistica(sc);
+                } */ else if (scelta == 6) {
+                    System.out.println("Uscita dal menù.");
+                    exit = true;
+                } else {
+                    System.out.println("Scelta non valida. Riprova.");
+                }
+            } //fine while
+        } catch (SQLException e) {
+            System.err.println("Si è verificato un errore." + e.getMessage());
+        }
+        sc.close();
+    }
+
+    // menu libri
+    private static void menuLibri(Scanner sc) {
+            // menu per scelta utente x libro
+            boolean exit = false;
+            int scelta;
+
             System.out.println("*** SELEZIONA UNA VOCE DAL MENÙ ***\n");
             while (!exit) {
                 System.out.println("1 per inserire un nuovo libro");
@@ -68,12 +111,66 @@ public class Main {
                 } else {
                     System.out.println("Scelta non valida. Riprova.");
                 }
-            } //fine while
-        } catch (SQLException e) {
-            System.err.println("Si è verificato un errore." + e.getMessage());
-        }
-        sc.close();
+            }
     }
+
+    // menu utenti
+
+    private static void menuUtenti(Scanner sc) {
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("*** MENU UTENTI ***");
+            System.out.println("1. Inserisci un nuovo utente");
+            System.out.println("2. Visualizza tutti gli utenti");
+            System.out.println("3. Autentica utente");
+            System.out.println("4. Mostra prestiti utente");
+            System.out.println("5. Torna al menu principale");
+
+            System.out.print("Inserisci il numero della tua selezione: ");
+            int scelta = sc.nextInt();
+            sc.nextLine();
+
+            switch (scelta) {
+                case 1:
+                    Utente.insertUtente(sc);
+                    break;
+                case 2:
+                    Utente.showUtente();
+                    break;
+                case 3:
+                    Utente.authenticateUser(sc);
+                    break;
+                case 4:
+                    System.out.print("Inserisci l'ID dell'utente: ");
+                    int userId = sc.nextInt();
+                    sc.nextLine();
+                    Utente.showLoanHistory(userId);
+                    break;
+                case 5:
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Selezione non valida, riprova.");
+            }
+        }
+    }
+
+    /* da fare:
+
+        private static void menuMagazzino(Scanner sc) {
+        // Implementa la logica del menu del magazzino
+    }
+
+    private static void menuRicerca(Scanner sc) {
+        // Implementa la logica del menu di ricerca
+    }
+
+    private static void menuPrestiti(Scanner sc) {
+        // Implementa la logica del menu dei prestiti
+    }
+
+     */
+
 
     private static void insertLibro(Scanner sc) {
 
